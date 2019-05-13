@@ -1,0 +1,32 @@
+<?php
+// module/Appoint/view/appoint/appoint/index.phtml:
+
+$title = 'Doctor Bookings';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('appoint', ['action' => 'add']) ?>">Add new appointment</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>patientName</th>
+    <th>Reason</th>
+    <th>startTime</th>
+    <th>endTime</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($appoints as $appoint) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($appoint->patientName) ?></td>
+        <td><?= $this->escapeHtml($appoint->reason) ?></td>
+        <td><?= $this->escapeHtml($appoint->startTime) ?></td>
+        <td><?= $this->escapeHtml($appoint->endTime) ?></td>
+        <td>
+            <a href="<?= $this->url('appoint', ['action' => 'edit', 'id' => $appoint->id]) ?>">Edit</a>
+            <a href="<?= $this->url('appoint', ['action' => 'delete', 'id' => $appoint->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
