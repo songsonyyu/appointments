@@ -50,7 +50,43 @@ class AppointController extends AbstractActionController
 
     public function editAction()
     {
-        #To do: add edit functionality
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (0 === $id) {
+            return $this->redirect()->toRoute('appoint', ['action' => 'add']);
+        }
+
+        // Retrieve the appointment with the specified id. Doing so raises
+        // an exception if the appointment is not found, which should result
+        // in redirecting to the landing page.
+        try {
+            $appoint = $this->table->getAppoint($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('appoint', ['action' => 'index']);
+        }
+
+        $form = new AppointForm();
+        $form->bind($appoint);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
+
+        if (! $request->isPost()) {
+            return $viewData;
+        }
+
+        $form->setInputFilter($appoint->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (! $form->isValid()) {
+            return $viewData;
+        }
+
+        $this->table->saveAppoint($appoint);
+
+        // Redirect to appointment list
+        return $this->redirect()->toRoute('appoint', ['action' => 'index']);
     }
 
     public function deleteAction()
