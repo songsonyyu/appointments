@@ -3,16 +3,10 @@
 namespace Appoint;
 
 use Zend\Router\Http\Segment;
-#use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
-    #'controllers' => [
-        #'factories' => [
-            #Controller\AppointController::class => InvokableFactory::class,
-        #],
-   # ],
 
-    // The following section is new and should be added to your file:
+    // Mapping URL to a particular action (add, edit delete) is done using routes
     'router' => [
         'routes' => [
             'appoint' => [

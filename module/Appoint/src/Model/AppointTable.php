@@ -14,11 +14,13 @@ class AppointTable
         $this->tableGateway = $tableGateway;
     }
 
+    // Retrieves all appointment rows from the database
     public function fetchAll()
     {
         return $this->tableGateway->select();
     }
 
+    // Retrieves a single row as an Appointment object
     public function getAppoint($id)
     {
         $id = (int) $id;
@@ -34,6 +36,7 @@ class AppointTable
         return $row;
     }
 
+    // Creates a new row in the database or updates a row that already exists
     public function saveAppoint(Appoint $appoint)
     {
         $data = [
@@ -62,6 +65,7 @@ class AppointTable
         $this->tableGateway->update($data, ['id' => $id]);
     }
 
+    // Removes the row completely.
     public function deleteAppoint($id)
     {
         $this->tableGateway->delete(['id' => (int) $id]);

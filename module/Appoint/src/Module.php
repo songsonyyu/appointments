@@ -2,12 +2,13 @@
 
 namespace Appoint;
 
-// Add these import statements:
+// import Zend modules:
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
+// ModuleMnager to load and configure appointment module
 class Module implements ConfigProviderInterface
 {
     public function getConfig()
@@ -28,7 +29,6 @@ class Module implements ConfigProviderInterface
         ];
     }
 
-    // Add this method:
     public function getServiceConfig()
     {
         return [

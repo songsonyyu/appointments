@@ -4,10 +4,8 @@ namespace Appoint\Test\Controller;
 use Appoint\Controller\AppointController;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
-
 use Appoint\Model\AppointTable;
 use Zend\ServiceManager\ServiceManager;
-
 use Appoint\Model\Appoint;
 use Prophecy\Argument;
 
@@ -32,7 +30,6 @@ class AppointControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
 
         $this->configureServiceManager($this->getApplicationServiceLocator());
-
         $services = $this->getApplicationServiceLocator();
         $config = $services->get('config');
         unset($config['db']);
@@ -92,6 +89,4 @@ class AppointControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/appoint');
     }
-
-
 }

@@ -19,6 +19,7 @@ class Appoint implements InputFilterAwareInterface
     public $startTime;
     public $endTime;
 
+    // Grab the data from the form
     public function exchangeArray(array $data)
     {
         $this->id     = !empty($data['id']) ? $data['id'] : null;
@@ -36,6 +37,7 @@ class Appoint implements InputFilterAwareInterface
         ));
     }
 
+    // zend-inputfilter provides a general purpose mechanism for input validation
     public function getInputFilter()
     {
         if ($this->inputFilter) {

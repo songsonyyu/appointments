@@ -8,7 +8,7 @@ class AppointForm extends Form
 {
     public function __construct($name = null)
     {
-        // We will ignore the name provided to the constructor
+        // zend-form manages the various form inputs 
         parent::__construct('appoint');
 
         $this->add([
